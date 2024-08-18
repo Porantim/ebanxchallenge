@@ -1,0 +1,15 @@
+name: php
+
+services:
+  php-dev :
+    image : php:8.3-apache
+    build :
+      context : ./
+      dockerfile : Dockerfile
+    container_name: php-dev
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www
+      

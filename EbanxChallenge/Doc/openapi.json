@@ -1,0 +1,207 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Ebanx Challenge",
+    "description": "This is the Ebanx Chalenge by [Mauricio Moura](https://www.linkedin.com/in/mauriciomoura/)\n\nSome useful links:\n- [My LinkedIn](https://www.linkedin.com/in/mauriciomoura/)\n- [My GitHub](https://github.com/Porantim/)\n- [eXobrain Solutions](https://exobrain.com.br)",
+    "contact": {
+      "email": "mauricio.moura.dev@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://5b9c-2804-1b3-60c1-9935-d92d-898a-ffff-3886.ngrok-free.app"
+    }
+  ],
+  "tags": [
+    {
+      "name": "account",
+      "description": "Account info and actions"
+    }
+  ],
+  "paths": {
+    "/balance": {
+      "get": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Get the balance amount",
+        "description": "Get the balance of the account by id",
+        "operationId": "getBalance",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "query",
+            "description": "The id of the account",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/reset": {
+      "post": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Resets database",
+        "description": "Resets database to initial status",
+        "operationId": "reset",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/event": {
+      "post": {
+        "tags": [
+          "account"
+        ],
+        "summary": "Changes account balance",
+        "description": "Changes account balance",
+        "operationId": "event",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Event"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventResponse"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Event": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "examples": [
+              "deposit",
+              "withdraw",
+              "transfer"
+            ]
+          },
+          "origin": {
+            "type": "string",
+            "format": "int32",
+            "examples": [
+              "100",
+              "300",
+              "1234"
+            ]
+          },
+          "amount": {
+            "type": "integer",
+            "format": "int32",
+            "examples": [
+              7
+            ]
+          },
+          "destination": {
+            "type": "string",
+            "format": "int32",
+            "examples": [
+              "100",
+              "300",
+              "1234"
+            ]
+          }
+        }
+      },
+      "EventResponse": {
+        "type": "object",
+        "properties": {
+          "origin": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "int32",
+                "examples": [
+                  "100",
+                  "300",
+                  "1234"
+                ]
+              },
+              "balance": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          "destination": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "int32",
+                "examples": [
+                  "100",
+                  "300",
+                  "1234"
+                ]
+              },
+              "balance": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "Event": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Event"
+            }
+          }
+        }
+      }
+    }
+  }
+}

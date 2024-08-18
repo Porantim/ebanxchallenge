@@ -1,0 +1,10 @@
+{
+    "version"       : "0.1.0.1",
+    "appShortName"  : "EbanxChallenge",
+    "appName"       : "Ebanx Challenge",
+    "basePath"      : "",
+    "originsAllowed": [],
+    "frontedPath"   : "Doc",
+    "frontendFile"  : "index.html",
+    "debug"         : false
+}

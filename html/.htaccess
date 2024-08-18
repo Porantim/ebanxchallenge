@@ -1,0 +1,15 @@
+RewriteEngine On
+RewriteBase /
+
+SetEnvIfNoCase User-Agent .*bot.* search_robot
+SetEnvIfNoCase User-Agent .*bing.* search_robot
+SetEnvIfNoCase User-Agent .*crawl.* search_robot
+Order Deny,Allow
+Deny from env=search_robot
+Allow from All
+
+RewriteRule ^.*\.json$ . [F]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ index.php [QSA,L]
