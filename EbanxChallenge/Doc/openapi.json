@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "https://5b9c-2804-1b3-60c1-9935-d92d-898a-ffff-3886.ngrok-free.app"
+      "url": "/"
     }
   ],
   "tags": [

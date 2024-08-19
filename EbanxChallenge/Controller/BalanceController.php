@@ -14,6 +14,11 @@ namespace EbanxChallenge\Controller {
     {
         public $methodsAllowed = "GET";
 
+        /**
+         * Handle de GET request to get the balance of an account.
+         *
+         * @return ServiceResponse The service response containing the balance.
+         */
         public function get() : ServiceResponse
         {
             $model = new AccountModel();

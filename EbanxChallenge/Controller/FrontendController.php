@@ -11,6 +11,11 @@ namespace EbanxChallenge\Controller {
     {
         public $methodsAllowed = "GET";
 
+        /**
+         * Handle the GET request to retrieve the frontend file.
+         *
+         * @return FileResponse The frontend file.
+         */
         public function get(): FileResponse
         {            
             $indexPath = Context::$application->mapAbsolutePath(Context::$application->configuration->frontedPath);

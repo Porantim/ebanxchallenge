@@ -11,6 +11,11 @@ namespace EbanxChallenge\Controller {
     {
         public $methodsAllowed = "GET";
 
+        /**
+         * Handles the GET request and retriveves the openapi.json file.
+         *
+         * @return FileResponse The file response for openapi.json.
+         */
         public function get(): FileResponse
         {            
             $indexPath = Context::$application->mapAbsolutePath(Context::$application->configuration->frontedPath);
@@ -26,7 +31,7 @@ namespace EbanxChallenge\Controller {
 
             if (!file_exists($fileAbsolutePath))
             {
-                return new FileResponse($indexPath . DIRECTORY_SEPARATOR . Context::$application->configuration->frontendFile);
+                throw new FrontEndNotFoundException();
             }
             else
             {

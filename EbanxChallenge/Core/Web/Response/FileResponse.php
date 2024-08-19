@@ -8,7 +8,8 @@ namespace EbanxChallenge\Core\Web\Response {
 
     class FileResponse extends ResponseBase
     {
-        public function __construct(string $fileName, string $mime = null)
+        
+        public function __construct(string $fileName, string $mime = null, array $replaces = null)
         {
             $filePath = Context::$application->mapAbsolutePath($fileName);
 

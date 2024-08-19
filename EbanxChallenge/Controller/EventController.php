@@ -13,6 +13,11 @@ namespace EbanxChallenge\Controller {
     {
         public $methodsAllowed = "POST";
 
+        /**
+         * Handles the POST request for the EventController.
+         *
+         * @return ServiceResponse The response from the service.
+         */
         public function post() : ServiceResponse
         {
             $eventData = Context::$request->inputData;

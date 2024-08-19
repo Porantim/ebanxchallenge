@@ -13,6 +13,11 @@ namespace EbanxChallenge\Controller {
     {
         public $methodsAllowed = "POST";
 
+        /**
+         * Handles the POST request for resetting the database.
+         *
+         * @return ServiceResponse The response from the service.
+         */
         public function post() : ServiceResponse
         {
             $model = new AccountModel();
